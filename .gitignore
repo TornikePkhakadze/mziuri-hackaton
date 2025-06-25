@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / compiled files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+
+# Virtual environment
+env/
+venv/
+.env/
+
+# SQLite database
+db.sqlite3
+*.sqlite3-journal
+
+# Media files
+/media/
+
+# Static files (if collected in a separate directory and not versioned)
+/static/
+
+# Log files
+*.log
+
+# Sensitive settings (if not using environment variables)
+local_settings.py
+production_settings.py
+
+# IDE and editor files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+.coverage
+.coverage.*
+
+# Python packaging and build artifacts
+dist/
+build/
+*.egg-info/
+.tox/
+
+# Jupyter Notebook files
+.ipynb_checkpoints/
+
+# Miscellaneous
+*~
+*.swp

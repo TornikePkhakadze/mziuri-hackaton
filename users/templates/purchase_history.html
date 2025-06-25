@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Your Purchase History</h2>
+    <ul class="list-group">
+        {% for purchase in purchases %}
+        <li class="list-group-item">
+            <strong>{{ purchase.item_name }}</strong> - ${{ purchase.item_price }} 
+            <small class="text-muted float-right">{{ purchase.purchase_date }}</small>
+        </li>
+        {% empty %}
+        <li class="list-group-item">No purchases yet.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

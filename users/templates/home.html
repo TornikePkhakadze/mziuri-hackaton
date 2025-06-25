@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - My App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <style>
+        .result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .sure { color: orange; }
+        .yes { color: green; }
+        .no { color: red; }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h3>Hello, {{ user.username }}</h3>
+
+    <form onsubmit="event.preventDefault(); calculate();">
+        <div class="form-group">
+            <label>Total (100%) - Your money</label>
+            <input type="number" id="total" class="form-control" value="{{ user.money }}">
+        </div>
+
+        <div class="form-group">
+            <label>Input a number (will be compared to 30% of your money)</label>
+            <input type="number" id="input" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Check</button>
+        <form>
+            <button id="buyBtn" class="btn btn-warning mt-2" style="display: none;">Confirm Buy</button>
+        </form>
+
+
+        <div id="result" class="result"></div>
+    </form>
+</div>
+
+<script>
+    function calculate() {
+        const total = parseFloat(document.getElementById('total').value);
+        const input = parseFloat(document.getElementById('input').value);
+        const result = document.getElementById('result');
+
+        if (isNaN(total) || isNaN(input)) {
+            result.innerHTML = "<span class='no'>Invalid input.</span>";
+            return;
+        }
+
+        const low = total * 0.3;
+        const mid = total * 0.45;
+
+        if (input <= low) {
+            result.innerHTML = "<span class='yes'>Yes ✅ - this is totally possible</span>";
+        } else if (input > low && input <= mid) {
+            result.innerHTML = "<span class='sure'>Sure ➖ - Over 30% but still okay</span>";
+        } else {
+            result.innerHTML = "<span class='no'>No ❌ - This exceeds 45%, not recommended</span>";
+        }
+    }
+
+    window.onload = function () {
+        const params = new URLSearchParams(window.location.search);
+        const price = params.get('price');
+        if (price) {
+            const inputField = document.getElementById('input');
+            inputField.value = price;
+            inputField.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+</script>
+
+
+</body>
+</html>
+
+
+
+{% endblock %}

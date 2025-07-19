@@ -12,14 +12,13 @@
 <body>
     <div class="container mt-5">
         <h3>{{ user.username }}</h3>
-        <img src="{{ profile.avatar.url }}" alt="Avatar" width="100">
     </div>
-    <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" name="avatar">
-    <button type="submit">Upload</button>
-</form>
 
+    
+    <div>
+        <h3>balance:{{ user.money }}</h3>
+    </div>
+</form>
 </body>
 </html>
 {% endblock %}
